@@ -43,6 +43,14 @@ opt$par[5]
 opt <- optim( par = par0, fn=nll_lm, data = df, method = "L-BFGS-B", lower = c(-Inf,-Inf,-Inf,-Inf,1e-6), upper= rep(Inf,5), hessian = TRUE)
 
 opt$convergence
+
+model <- lm(y ~ x1 + x2 + x3, data = df)
+
+betalm <- coef(model)
+sigmalm <- sigma(model)
+
+betalm
+sigmalm
 dim(opt$hessian)
 
 se <- sqrt(diag(solve(opt$hessian)))
